@@ -1,0 +1,11 @@
+{
+  "name": "cordova-plugin-file-open",
+  "version": "0.0.1",
+  "description": "Input your plugin's description!",
+  "cordova": {
+    "id": "cordova-plugin-file-open",
+    "platforms": [
+      "android"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-file-open"
+        version="0.0.1"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>file open</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.4.0" />
+    </engines>
+
+    <js-module name="fileOpen" src="www/cordova-plugin-file-open.js">
+        <clobbers target="fileOpen" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="FileOpen" >
+                <param name="android-package" value="com.sucsoft.fileopen.FileOpen"/>
+            </feature>
+        </config-file>
+		
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+            <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+        </config-file>
+		
+		<config-file target="/AndroidManifest.xml" parent="/manifest/application">
+			<provider
+				android:name="android.support.v4.content.FileProvider"
+				android:authorities="${applicationId}.fileprovider"
+				android:grantUriPermissions="true"
+				android:exported="false">
+				<!--元数据-->
+				<meta-data
+					android:name="android.support.FILE_PROVIDER_PATHS"
+					android:resource="@xml/file_paths" />
+			</provider>
+		</config-file>
+
+        <source-file src="src/android/FileOpen.java" target-dir="src/com/sucsoft/fileopen" />
+        <source-file src="src/android/xml/file_paths.xml" target-dir="res/xml" />
+    </platform>
+</plugin>
